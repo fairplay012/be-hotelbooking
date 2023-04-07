@@ -54,4 +54,15 @@ router.get("/find/:id", async (req, res) => {
     }
 });
 
+
+//GET ALL UTIS
+router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+  try {
+      const uti = await Uti.uti()
+      res.status(200).json(hotels)
+  } catch (error) {
+      res.status(500).json(error)
+  }
+})
+
   module.exports = router

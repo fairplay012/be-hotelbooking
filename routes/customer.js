@@ -63,4 +63,14 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
+//GET ALL CUSTOMERS
+router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+  try {
+      const customers = await Customer.find()
+      res.status(200).json(customers)
+  } catch (error) {
+      res.status(500).json(error)
+  }
+})
+
   module.exports = router

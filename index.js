@@ -15,14 +15,12 @@ const reviewRoute = require("./routes/review");
 const transRoute = require("./routes/trans");
 const utiRoute = require("./routes/uti");
 const bookingRoute = require("./routes/booking");
+const stripeRoute = require("./routes/stripe");
 
 dotenv.config();
 
 mongoose.set('strictQuery', true);
 
-// mongoose.connect((process.env.MONGODB_URL),()=>{
-//     console.log("Connected to MongoDB");
-// })
 
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("DB Connection Successfully!"))
@@ -30,6 +28,8 @@ mongoose.connect(process.env.MONGODB_URL)
 
 
 app.use(bodyParser.json({limit:"50mb"}));
+
+app.use(cors());
 
 //Route
 app.use(express.json());
@@ -43,9 +43,9 @@ app.use("/api/review", reviewRoute);
 app.use("/api/trans", transRoute);
 app.use("/api/uti", utiRoute);
 app.use("/api/booking", bookingRoute);
+app.use("/api/checkout", stripeRoute);
 
 
-app.use(cors());
 app.use(morgan("common"));
 
 app.listen(process.env.PORT || 5000, ()=>{

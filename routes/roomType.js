@@ -54,4 +54,14 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
+//GET ALL ROOMTYPES
+router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+  try {
+      const roomtypes = await RoomType.find()
+      res.status(200).json(roomtypes)
+  } catch (error) {
+      res.status(500).json(error)
+  }
+})
+
   module.exports = router;
