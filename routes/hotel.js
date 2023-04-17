@@ -1,5 +1,5 @@
 const Hotel = require("../model/Hotel");
-const  {verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin}  = require("./verifyToken");
+const  { verifyTokenAndAuthorization, verifyTokenAndAdmin}  = require("./verifyToken");
 
 const router = require("express").Router();
 
@@ -54,8 +54,17 @@ router.get("/find/:id", async (req, res) => {
     }
 });
 
+router.get("/findArea/:area", async (req, res) => {
+  try {
+    const hotels = await Hotel.find({"area" : req.params.area});
+    res.status(200).json(hotels);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //GET ALL HOTELS
-router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+router.get("/findAll", async(req,res) =>{
   try {
       const hotels = await Hotel.find()
       res.status(200).json(hotels)

@@ -26,10 +26,15 @@ mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("DB Connection Successfully!"))
   .catch((err) => {console.log(err)});
 
+app.use(cors());
 
 app.use(bodyParser.json({limit:"50mb"}));
 
-app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 
 //Route
 app.use(express.json());

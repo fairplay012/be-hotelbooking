@@ -1,5 +1,5 @@
 const Booking = require("../model/Booking");
-const  {verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin}  = require("./verifyToken");
+const  { verifyTokenAndAdmin}  = require("./verifyToken");
 
 const router = require("express").Router();
 
