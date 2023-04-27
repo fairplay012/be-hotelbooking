@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/addBooking", verifyTokenAndAdmin, async (req, res) => {
+router.post("/addBooking", async (req, res) => {
     const newBooking = new Booking(req.body);
   
     try {

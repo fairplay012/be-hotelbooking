@@ -54,7 +54,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //GET ALL TRANS
-router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+router.get("/findAll", async(req,res) =>{
   try {
       const trans = await Trans.find()
       res.status(200).json(trans)

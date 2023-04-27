@@ -5,21 +5,27 @@ const BookingSchema  = new mongoose.Schema({
     endDate:{type: Date,},
     Note:{type: String,},
     customer:
-        {type: mongoose.Schema.Types.ObjectId,ref:"Customer"}
+        {type: String,}
     ,
-    trans:{type: mongoose.Schema.Types.ObjectId,ref:"Trans"},
-    rooms:[
+    email:
+        {type: String}
+    ,
+    trans:{type: String,},
+    rooms:
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:"Room"
+            type: String,
         }
-    ],
-    utis:[
+    ,
+    utis:
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:"Uti"
+            type: String,
         }
-    ]
+    ,
+    status:
+    {
+        type: String,
+    },
+    total:{type:Number}
 })
 
 module.exports = mongoose.model("Booking", BookingSchema);

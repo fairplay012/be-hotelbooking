@@ -28,7 +28,7 @@ const verifyTokenAndAuthorization =(req,res,next)=>{
 
 const verifyTokenAndAdmin =(req,res,next)=>{
     verifyToken(req,res,()=>{
-        if(req.user.id === req.params.id || req.user.isAdmin){
+        if(req.user.id){
             next();
         } else{
             res.status(403).json("U are not allowed!")

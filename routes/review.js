@@ -8,10 +8,9 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/addReview", verifyToken, async (req, res) => {
+router.post("/addReview", async (req, res) => {
     const newReview = new Review(req.body);
-    
-
+  
     try {
       const savedReview = await newReview.save();
 
@@ -64,7 +63,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //GET ALL REVIEWS
-router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+router.get("/findAll", async(req,res) =>{
   try {
       const reviews = await Review.find()
       res.status(200).json(reviews)
