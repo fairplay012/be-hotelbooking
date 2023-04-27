@@ -69,7 +69,7 @@ router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
       const customers = await Customer.find()
       res.status(200).json(customers)
   } catch (error) {
-      res.status(500).json(error)
+      res.status(500).error
   }
 })
 
