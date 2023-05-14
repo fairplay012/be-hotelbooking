@@ -17,7 +17,12 @@ const BookingSchema  = new mongoose.Schema({
         }
     ,
     utis:
-        {
+        {   
+            type: String,
+        }
+    ,
+    hotel:
+        {   
             type: String,
         }
     ,

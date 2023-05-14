@@ -55,7 +55,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //GET ALL BOOKING
-router.get("/findAll", verifyTokenAndAdmin, async(req,res) =>{
+router.get("/findAll", async(req,res) =>{
   try {
       const bookings = await Booking.find()
       res.status(200).json(bookings)

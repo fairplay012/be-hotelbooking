@@ -16,7 +16,8 @@ const HotelSchema = new mongoose.Schema({
     },
     rooms:[
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"Room"
         }
     ],
     utis:[
