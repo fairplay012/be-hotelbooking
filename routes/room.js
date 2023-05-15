@@ -15,11 +15,10 @@ router.post("/addRoom", verifyTokenAndAdmin, async (req, res) => {
         const hotel = Hotel.findById(req.body.hotel);
         await hotel.updateOne({ $push: {rooms: savedRoom._id}});
       }
-      if(req.body.roomType){
-        const roomType = RoomType.findById(req.body.roomType);
-        await roomType.updateOne({ $push: {rooms: savedRoom._id}});
-      }
-
+      // if(req.body.roomType){
+      //   const roomType = RoomType.findById(req.body.roomType);
+      //   await roomType.updateOne({ $push: {rooms: savedRoom._id}});
+      // }
       res.status(200).json(savedRoom);
 
     } catch (err) {
@@ -28,7 +27,7 @@ router.post("/addRoom", verifyTokenAndAdmin, async (req, res) => {
   });
 
 //UPDATE
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(
       req.params.id,

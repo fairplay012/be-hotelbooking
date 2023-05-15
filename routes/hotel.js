@@ -7,7 +7,6 @@ const router = require("express").Router();
 
 router.post("/addHotel", verifyTokenAndAdmin, async (req, res) => {
     const newHotel = new Hotel(req.body);
-  
     try {
       const savedHotel = await newHotel.save();
       res.status(200).json(savedHotel);
@@ -27,6 +26,17 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
         },
         { new: true }
       );
+      // if(req.body.rooms){
+      //   const room = Room.findById(req.body.rooms);
+      //   await room.updateOne({ $set: {room: updatedHotel.hotel}});
+      // }
+      // const rooms = await Room.findByIdAndUpdate(
+      //   updatedHotel.rooms,
+      //   { 
+      //     $set: req.body,
+      //   },
+      //   { new: true }
+      // );
       res.status(200).json(updatedHotel);
     } catch (err) {
       res.status(500).json(err);
