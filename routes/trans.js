@@ -1,4 +1,5 @@
 const Trans = require("../model/Trans");
+const Hotel = require("../model/Hotel")
 const  {verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin}  = require("./verifyToken");
 
 const router = require("express").Router();
@@ -10,6 +11,10 @@ router.post("/addTrans", verifyTokenAndAdmin, async (req, res) => {
   
     try {
       const savedTrans = await newTrans.save();
+      if(req.body.hotel){
+        const hotel = Hotel.findById(req.body.hotel);
+        await hotel.updateOne({ $push: {trans: savedTrans._id}});
+      }
       res.status(200).json(savedTrans);
     } catch (err){
       res.status(500).json(err)

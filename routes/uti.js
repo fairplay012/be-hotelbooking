@@ -1,4 +1,5 @@
 const Uti = require("../model/Uti");
+const Hotel = require("../model/Hotel")
 const  {verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin}  = require("./verifyToken");
 
 const router = require("express").Router();
@@ -10,6 +11,10 @@ router.post("/addUti", verifyTokenAndAdmin, async (req, res) => {
   
     try {
       const savedUti = await newUti.save();
+      if(req.body.hotel){
+        const hotel = Hotel.findById(req.body.hotel);
+        await hotel.updateOne({ $push: {utis: savedUti._id}});
+      }
       res.status(200).json(savedUti);
     } catch (err){
       res.status(500).json(err)

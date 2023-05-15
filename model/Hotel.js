@@ -22,12 +22,14 @@ const HotelSchema = new mongoose.Schema({
     ],
     utis:[
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"Uti"
         }
     ],  
     trans:[
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"Trans"
         }
     ],
     area:{

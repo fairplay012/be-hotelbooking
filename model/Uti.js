@@ -6,6 +6,7 @@ const UtiSchema = new mongoose.Schema({
     imgURL:{
         type: String,
     },
+    hotel:{type: mongoose.Schema.Types.ObjectId,ref:"Hotel"},
 })
 
 module.exports = mongoose.model("Uti", UtiSchema);
